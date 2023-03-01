@@ -8,10 +8,10 @@ module.exports = {
       'module-resolver',
       {
         alias: {
-          '@theme': './src/theme',
-          '@components': './src/components',
-          '@navigators': './src/navigators',
-          '@screens': './src/screens',
+          '~theme': './src/theme',
+          '~components': './src/components',
+          '~navigators': './src/navigators',
+          '~screens': './src/screens',
           '~utils': './src/utils',
           '~types': './src/types',
           '~store': './src/store',
