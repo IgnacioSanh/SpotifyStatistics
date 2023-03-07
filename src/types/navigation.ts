@@ -1,5 +1,7 @@
 export enum ScreenNames {
   HOME = 'HOME',
+  DISCOVER = 'DISCOVER',
+  STATS = 'STATS',
 }
 
 export type RootNavigatorParamList = {

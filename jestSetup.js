@@ -17,9 +17,9 @@ jest.mock('@react-navigation/native', () => {
   };
 });
 
-// jest.mock('@fortawesome/react-native-fontawesome', () => {
-//   const React = require('react');
-//   const IconMock = ({ children, ...props }) =>
-//     React.createElement('svg', props, children);
-//   return { FontAwesomeIcon: IconMock };
-// });
+jest.mock('@fortawesome/react-native-fontawesome', () => {
+  const React = require('react');
+  const IconMock = ({ children, ...props }) =>
+    React.createElement('svg', props, children);
+  return { FontAwesomeIcon: IconMock };
+});
