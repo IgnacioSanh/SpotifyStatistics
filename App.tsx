@@ -1,11 +1,14 @@
 import React from 'react';
+import { StatusBar } from 'react-native';
 
-import {SafeAreaView, Text} from 'react-native';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
+import TabNavigator from '~navigators/TabNavigator';
 
 export default function App() {
   return (
-    <SafeAreaView>
-      <Text>My App</Text>
-    </SafeAreaView>
+    <SafeAreaProvider>
+      <StatusBar barStyle="light-content" />
+      <TabNavigator />
+    </SafeAreaProvider>
   );
 }
