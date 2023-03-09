@@ -2,8 +2,10 @@ export enum ScreenNames {
   HOME = 'HOME',
   DISCOVER = 'DISCOVER',
   STATS = 'STATS',
+  LOGIN = 'LOGIN',
 }
 
-export type RootNavigatorParamList = {
-  [ScreenNames.HOME]: undefined;
-};
+export enum NavigatorNames {
+  MAIN_NAVIGATOR = 'MAIN_NAVIGATOR',
+  AUTH_NAVIGATOR = 'AUTH_NAVIGATOR',
+}

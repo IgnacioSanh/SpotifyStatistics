@@ -1,7 +1,7 @@
 import React from 'react';
-import { Text } from 'react-native';
 
 import { Wrapper } from './styles';
+import { StandardBoldFont, Colors } from '~theme';
 
 interface ButtonProps {
   label: string;
@@ -20,7 +20,7 @@ export default function Button({
       enabled={enabled}
       testID="button"
       activeOpacity={enabled ? 0.7 : 1}>
-      <Text>{label}</Text>
+      <StandardBoldFont color={Colors.Black}>{label}</StandardBoldFont>
     </Wrapper>
   );
 }
