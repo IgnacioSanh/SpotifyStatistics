@@ -5,6 +5,7 @@ import MainNavigator from './MainNavigator';
 import AuthNavigator from './AuthNavigator';
 import { NavigatorNames } from '~types';
 import { Colors } from '~theme/colors';
+import { useAppContext } from '~store/AppProvider';
 
 const Stack = createNativeStackNavigator();
 
@@ -21,19 +22,21 @@ const darkTheme: Theme = {
 };
 
 export default function RootNavigator() {
+  const { token } = useAppContext();
   return (
     <NavigationContainer theme={darkTheme}>
-      <Stack.Navigator
-        initialRouteName={NavigatorNames.AUTH_NAVIGATOR}
-        screenOptions={{ headerShown: false }}>
-        <Stack.Screen
-          name={NavigatorNames.MAIN_NAVIGATOR}
-          component={MainNavigator}
-        />
-        <Stack.Screen
-          name={NavigatorNames.AUTH_NAVIGATOR}
-          component={AuthNavigator}
-        />
+      <Stack.Navigator screenOptions={{ headerShown: false }}>
+        {token ? (
+          <Stack.Screen
+            name={NavigatorNames.MAIN_NAVIGATOR}
+            component={MainNavigator}
+          />
+        ) : (
+          <Stack.Screen
+            name={NavigatorNames.AUTH_NAVIGATOR}
+            component={AuthNavigator}
+          />
+        )}
       </Stack.Navigator>
     </NavigationContainer>
   );

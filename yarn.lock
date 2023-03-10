@@ -2484,6 +2484,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/axios@npm:^0.14.0":
+  version: 0.14.0
+  resolution: "@types/axios@npm:0.14.0"
+  dependencies:
+    axios: "*"
+  checksum: 12a230b9404055d81804cb57fe4739b2317111b28a39e2477b2513250e8b85725e6f6ce509fc2a9494a6da60facb8d80df875fcd747f62f6c3abebc7db60ae66
+  languageName: node
+  linkType: hard
+
 "@types/babel__core@npm:^7.1.14":
   version: 7.20.0
   resolution: "@types/babel__core@npm:7.20.0"
@@ -2843,6 +2852,7 @@ __metadata:
     "@react-navigation/native-stack": ^6.9.12
     "@testing-library/react-native": ^12.0.0-rc.1
     "@tsconfig/react-native": ^2.0.2
+    "@types/axios": ^0.14.0
     "@types/jest": ^29.2.1
     "@types/react": ^18.0.24
     "@types/react-test-renderer": ^18.0.0
@@ -2856,7 +2866,9 @@ __metadata:
     prettier: ^2.4.1
     react: 18.2.0
     react-native: 0.71.3
+    react-native-app-auth: ^6.4.3
     react-native-dotenv: ^3.4.8
+    react-native-mmkv-storage: ^0.8.0
     react-native-safe-area-context: ^4.5.0
     react-native-screens: ^3.20.0
     react-native-svg: ^13.8.0
@@ -3215,7 +3227,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"axios@npm:^1.3.4":
+"axios@npm:*, axios@npm:^1.3.4":
   version: 1.3.4
   resolution: "axios@npm:1.3.4"
   dependencies:
@@ -5839,7 +5851,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"invariant@npm:*, invariant@npm:^2.2.4":
+"invariant@npm:*, invariant@npm:2.2.4, invariant@npm:^2.2.4":
   version: 2.2.4
   resolution: "invariant@npm:2.2.4"
   dependencies:
@@ -8739,6 +8751,25 @@ __metadata:
   languageName: node
   linkType: hard
 
+"react-native-app-auth@npm:^6.4.3":
+  version: 6.4.3
+  resolution: "react-native-app-auth@npm:6.4.3"
+  dependencies:
+    invariant: 2.2.4
+    react-native-base64: 0.0.2
+  peerDependencies:
+    react-native: ">=0.63.0"
+  checksum: 5edf1e3b390d4feafa7d1f7c2488564c130ef9625283e83e803d896832494da121e032d61b2be062ed1be8bb0506e7176c8b3fdd30c0dd3152aa6ae1b97e3a32
+  languageName: node
+  linkType: hard
+
+"react-native-base64@npm:0.0.2":
+  version: 0.0.2
+  resolution: "react-native-base64@npm:0.0.2"
+  checksum: 696f6cad0e3ce26437275bcd791becaf597300d351a3ab2d7084fd42a177731bb9ab1e490534397ed35de4cd2a5a4385ee8d49bf5846069101b5ada98f132d23
+  languageName: node
+  linkType: hard
+
 "react-native-codegen@npm:^0.71.5":
   version: 0.71.5
   resolution: "react-native-codegen@npm:0.71.5"
@@ -8766,6 +8797,17 @@ __metadata:
   version: 0.71.15
   resolution: "react-native-gradle-plugin@npm:0.71.15"
   checksum: e1c1714568324405fbca4ca841a0ab62cd8b90c65b3320183825161358f2bdb5226c8b22153b3007c2455dc7535d839d07d43148e6cba7952ae948636154f2b6
+  languageName: node
+  linkType: hard
+
+"react-native-mmkv-storage@npm:^0.8.0":
+  version: 0.8.0
+  resolution: "react-native-mmkv-storage@npm:0.8.0"
+  peerDependencies:
+    react-native: "*"
+  bin:
+    mmkv-link: autolink/postlink/run.js
+  checksum: 16f66c93e5e52d92b8884885e52a48fb97215fb05f9d5254c5a375045f19674bd224821410783514f914036c5e7c701893cfb54455c8e9f3df6d83cd3709182d
   languageName: node
   linkType: hard
 

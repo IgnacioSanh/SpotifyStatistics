@@ -13,6 +13,8 @@ module.exports = {
           '~navigators': './src/navigators',
           '~screens': './src/screens',
           '~utils': './src/utils',
+          '~services': './src/services',
+          '~hooks': './src/hooks',
           '~types': './src/types',
           '~store': './src/store',
           '~mocks': './src/mocks',
