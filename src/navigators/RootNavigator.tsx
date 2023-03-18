@@ -5,7 +5,7 @@ import MainNavigator from './MainNavigator';
 import AuthNavigator from './AuthNavigator';
 import { NavigatorNames } from '~types';
 import { Colors } from '~theme/colors';
-import { useAppContext } from '~store/AppProvider';
+import { useAuthContext } from '~store/AuthProvider';
 
 const Stack = createNativeStackNavigator();
 
@@ -22,11 +22,11 @@ const darkTheme: Theme = {
 };
 
 export default function RootNavigator() {
-  const { token } = useAppContext();
+  const { userIsLogged } = useAuthContext();
   return (
     <NavigationContainer theme={darkTheme}>
       <Stack.Navigator screenOptions={{ headerShown: false }}>
-        {token ? (
+        {userIsLogged ? (
           <Stack.Screen
             name={NavigatorNames.MAIN_NAVIGATOR}
             component={MainNavigator}

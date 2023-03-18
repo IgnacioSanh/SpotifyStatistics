@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react';
 import SpotifyService from '~services/SpotifyService';
-import { TopArtist } from '~types';
+import { Artist } from '~types';
 
 export default function useTopArtists(
   limit: number = 20,
-): [TopArtist[], boolean, () => Promise<void>] {
-  const [artists, setArtists] = useState<TopArtist[]>([]);
+): [Artist[], boolean, () => Promise<void>] {
+  const [artists, setArtists] = useState<Artist[]>([]);
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
@@ -15,7 +15,7 @@ export default function useTopArtists(
 
   async function refresh() {
     setIsLoading(true);
-    setArtists(await SpotifyService.getTopArtists(limit));
+    setArtists((await SpotifyService.getTopArtists(limit)) || []);
     setIsLoading(false);
   }
 

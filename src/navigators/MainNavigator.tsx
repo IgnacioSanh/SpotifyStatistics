@@ -3,10 +3,11 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { ParamListBase, RouteProp } from '@react-navigation/native';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 
-import { ScreenNames } from '~types';
-import { DiscoverScreen, HomeScreen, StatsScreen } from '~screens';
+import { NavigatorNames, ScreenNames } from '~types';
+import { DiscoverScreen, StatsScreen } from '~screens';
 import { getRouteIcon } from '~utils/NavigationUtil';
 import { Colors } from '~theme/colors';
+import HomeNavigator from './HomeNavigator';
 
 const Tab = createBottomTabNavigator();
 
@@ -38,8 +39,8 @@ export default function MainNavigator() {
         headerShown: false,
       })}>
       <Tab.Screen
-        name={ScreenNames.HOME}
-        component={HomeScreen}
+        name={NavigatorNames.HOME_NAVIGATOR}
+        component={HomeNavigator}
         options={{ title: 'Home' }}
       />
       <Tab.Screen

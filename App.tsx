@@ -2,16 +2,19 @@ import React from 'react';
 import { StatusBar } from 'react-native';
 
 import { SafeAreaProvider } from 'react-native-safe-area-context';
+import Toast from 'react-native-toast-message';
+
 import RootNavigator from '~navigators/RootNavigator';
-import AppProvider from '~store/AppProvider';
+import AuthProvider from '~store/AuthProvider';
 
 export default function App() {
   return (
     <SafeAreaProvider>
-      <AppProvider>
+      <AuthProvider>
         <StatusBar barStyle="light-content" />
         <RootNavigator />
-      </AppProvider>
+        <Toast />
+      </AuthProvider>
     </SafeAreaProvider>
   );
 }

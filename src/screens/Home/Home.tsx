@@ -1,5 +1,5 @@
 import React from 'react';
-import { TouchableHighlight } from 'react-native';
+import { TouchableHighlight, View } from 'react-native';
 
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faSpotify } from '@fortawesome/free-brands-svg-icons/faSpotify';
@@ -12,12 +12,19 @@ import { Screen, Pill, ArtistsList } from '~components';
 import { Colors } from '~theme/colors';
 import { H1, StandardBoldFont } from '~theme/typography';
 import { Categories, Row, RowBottom } from './styles';
-import { useAppContext } from '~store/AppProvider';
+import { useAuthContext } from '~store/AuthProvider';
 import { useTopArtists } from '~hooks';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { HomeNavigatorParamList, ScreenNames } from '~types';
 
-export default function Home() {
-  const { setToken } = useAppContext();
+type HomeProps = NativeStackScreenProps<
+  HomeNavigatorParamList,
+  ScreenNames.HOME
+>;
+
+export default function Home({ navigation }: HomeProps) {
   const [topArtists] = useTopArtists(5);
+  const { logout } = useAuthContext();
 
   return (
     <Screen>
@@ -33,7 +40,7 @@ export default function Home() {
             size={16}
           />
           <FontAwesomeIcon icon={faUser} color={Colors.White} size={16} />
-          <TouchableHighlight onPress={() => setToken(undefined)}>
+          <TouchableHighlight onPress={logout}>
             <FontAwesomeIcon
               icon={faRightFromBracket}
               color={Colors.White}
@@ -51,7 +58,19 @@ export default function Home() {
         <H1>Your top 5 artists</H1>
         <StandardBoldFont color={Colors.Green}>See More</StandardBoldFont>
       </RowBottom>
-      <ArtistsList data={topArtists} showRanking />
+      <View>
+        <ArtistsList
+          data={topArtists}
+          navigateToArtist={(artistId: string, artistName: string) =>
+            navigation.navigate(ScreenNames.ARTIST_DETAIL, {
+              id: artistId,
+              artistName,
+            })
+          }
+          showRanking
+        />
+        <H1>Your top Albums</H1>
+      </View>
     </Screen>
   );
 }

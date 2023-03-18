@@ -1,25 +1,22 @@
 import React from 'react';
 import { NameContainer, Wrapper, RoundedImage, NumberOutline } from './styles';
 import { SmallFont } from '~theme/typography';
-import { useNavigation } from '@react-navigation/native';
 
 interface ArtistCardProps {
-  id: string;
   imageURI: string;
   name: string;
   rank?: number;
+  onPress: () => void;
 }
 
 export default function ArtistCard({
   imageURI,
   name,
   rank,
-  id,
+  onPress,
 }: ArtistCardProps) {
-  // const { navigate } = useNavigation();
-
   return (
-    <Wrapper withRank={Boolean(rank)}>
+    <Wrapper withRank={Boolean(rank)} onPress={onPress}>
       {rank && <NumberOutline>{rank}</NumberOutline>}
       <RoundedImage source={{ uri: imageURI, width: 110, height: 110 }} />
       <NameContainer>

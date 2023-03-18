@@ -1,47 +1,14 @@
-import React, {
-  useContext,
-  createContext,
-  useState,
-  PropsWithChildren,
-  useEffect,
-} from 'react';
-import { MMKVLoader, useMMKVStorage } from 'react-native-mmkv-storage';
-import axios from 'axios';
+import React, { useContext, createContext, PropsWithChildren } from 'react';
 
-import { AppStoreContext, PersistedKeys } from '~types';
+import { AppStoreContext } from '~types';
 
 const appContext = createContext<AppStoreContext>({
-  token: undefined,
-  setToken: () => {},
+  userIsLogged: false,
 });
 
-const storage = new MMKVLoader().initialize();
-
 export default function AppProvider({ children }: PropsWithChildren) {
-  const [token, setToken] = useState<string>();
-  const [persistedToken, setPersistedToken] = useMMKVStorage<
-    string | undefined
-  >(PersistedKeys.TOKEN, storage, undefined);
-
-  useEffect(() => {
-    if (persistedToken) {
-      setToken(persistedToken);
-      axios.interceptors.request.use(requestConfig => {
-        requestConfig.headers.Authorization = `Bearer ${persistedToken}`;
-        return requestConfig;
-      });
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  useEffect(() => {
-    if (token && persistedToken !== token) {
-      setPersistedToken(token);
-    }
-  }, [token, setPersistedToken, persistedToken]);
-
   return (
-    <appContext.Provider value={{ token, setToken }}>
+    <appContext.Provider value={{ userIsLogged: false }}>
       {children}
     </appContext.Provider>
   );

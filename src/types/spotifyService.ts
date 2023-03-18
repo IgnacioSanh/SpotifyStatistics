@@ -4,7 +4,7 @@ export interface ImageProp {
   width: number;
 }
 
-export interface TopArtist {
+export interface Artist {
   genres: string[];
   id: string;
   images: ImageProp[];
@@ -13,10 +13,32 @@ export interface TopArtist {
   uri: string;
 }
 
+export interface Album {
+  id: string;
+  images: ImageProp[];
+  name: string;
+  release_date: string;
+  genres: string[];
+  label: string;
+}
+
+export interface Track {
+  id: string;
+  album: Album;
+  artists: Artist[];
+  duration_ms: number;
+  explicit: boolean;
+  name: string;
+}
+
 export interface GetTopArtistsResponse {
-  items: TopArtist[];
+  items: Artist[];
 }
 
 export interface GetTopArtistsRequest {
   limit: number;
+}
+
+export interface GetArtistTopTracksResponse {
+  tracks: Track[];
 }

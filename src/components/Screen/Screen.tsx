@@ -2,10 +2,21 @@ import React, { PropsWithChildren } from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Wrapper } from './styles';
 
-export default function Screen({ children }: PropsWithChildren) {
+interface ScreenProps {
+  noSideMargin?: boolean;
+  noVerticalMargin?: boolean;
+}
+
+export default function Screen({
+  children,
+  noSideMargin = false,
+  noVerticalMargin = false,
+}: PropsWithChildren<ScreenProps>) {
   return (
     <SafeAreaView edges={['top']}>
-      <Wrapper>{children}</Wrapper>
+      <Wrapper noSideMargin={noSideMargin} noVerticalMargin={noVerticalMargin}>
+        {children}
+      </Wrapper>
     </SafeAreaView>
   );
 }

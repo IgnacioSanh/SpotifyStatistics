@@ -1,8 +1,8 @@
 import styled from 'styled-components/native';
 
-import { FlatList } from 'react-native';
+import { FlatList, FlatListProps } from 'react-native';
 
-import { TopArtist } from '~types';
+import { Artist } from '~types';
 import { Spacings } from '~theme/spacings';
 
 export const Separator = styled.View`
@@ -10,6 +10,17 @@ export const Separator = styled.View`
   width: ${Spacings.medium}px;
 `;
 
-export const ArtistList = styled(FlatList as new () => FlatList<TopArtist>)`
-  padding-left: 30px;
+interface ArtistListProps extends FlatListProps<Artist> {
+  showRanking?: boolean;
+}
+
+export const ArtistList = styled(FlatList as new () => FlatList<Artist>).attrs(
+  ({ showRanking }: ArtistListProps) => ({
+    contentContainerStyle: {
+      maxHeight: 130,
+      paddingLeft: showRanking ? 30 : 0,
+    },
+  }),
+)<ArtistListProps>`
+  margin-top: ${Spacings.small}px;
 `;

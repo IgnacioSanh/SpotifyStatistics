@@ -1,51 +1,36 @@
 import React from 'react';
-import { FlatList, ListRenderItem, View } from 'react-native';
 
-import { TopArtist } from '~types';
+import { Artist } from '~types';
 import ArtistCard from '../ArtistCard/ArtistCard';
-import { ArtistList } from './styles';
+import { ArtistList, Separator } from './styles';
 
 interface ArtistListProps {
-  data: TopArtist[];
+  data: Artist[];
   showRanking?: boolean;
+  navigateToArtist: (artistId: string, artistName: string) => void;
 }
 
 export default function ArtistsList({
   data,
+  navigateToArtist,
   showRanking = false,
 }: ArtistListProps) {
-  // const renderItem: ListRenderItem<TopArtist> = ({ item, index }) => (
-  //   <ArtistCard
-  //     imageURI={item.images[0].url}
-  //     name={item.name}
-  //     rank={index + 1}
-  //   />
-  // );
-
-  // return (
-  //   <ArtistList
-  //     data={data}
-  //     keyExtractor={(item: TopArtist) => item.id}
-  //     renderItem={renderItem}
-  //     horizontal
-  //   />
-  // );
-
   return (
-    <FlatList
+    <ArtistList
       data={data}
-      contentContainerStyle={{ maxHeight: 130 }}
-      keyExtractor={item => item.id}
-      style={{ paddingLeft: showRanking ? 30 : 0, marginTop: 20 }}
-      ItemSeparatorComponent={() => <View style={{ height: 10, width: 10 }} />}
-      horizontal
+      keyExtractor={(item: Artist) => item.id}
+      ItemSeparatorComponent={Separator}
+      showsHorizontalScrollIndicator={false}
+      showRanking={showRanking}
       renderItem={({ item, index }) => (
         <ArtistCard
           imageURI={item.images[0].url}
           name={item.name}
           rank={showRanking ? index + 1 : undefined}
+          onPress={() => navigateToArtist(item.id, item.name)}
         />
       )}
+      horizontal
     />
   );
 }

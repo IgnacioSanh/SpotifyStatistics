@@ -1,8 +1,19 @@
 export interface AppStoreContext {
-  token?: string;
-  setToken: React.Dispatch<React.SetStateAction<string | undefined>>;
+  userIsLogged: boolean;
+}
+export interface AuthContext {
+  userIsLogged: boolean;
+  login: () => void;
+  logout: () => void;
+  refreshToken: () => void;
 }
 
+export type PersistedTokens = {
+  token: string;
+  refreshToken: string;
+  idToken: string;
+};
+
 export enum PersistedKeys {
-  TOKEN = 'TOKEN',
+  TOKENS = 'TOKENS',
 }
