@@ -1,5 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { ActivityIndicator, FlatList, View } from 'react-native';
+import {
+  ActivityIndicator,
+  FlatList,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { Artist, HomeNavigatorParamList, ScreenNames, Track } from '~types';
@@ -31,31 +36,40 @@ export default function ArtistDetail({ route }: ArtistDetailProps) {
   }, []);
 
   return (
-    <Screen noSideMargin noVerticalMargin>
+    <>
       <BackButton />
-      {artistData ? (
-        <>
-          <View>
-            <BandName>{artistData.name}</BandName>
-            <Image url={artistData.images[0].url} />
-          </View>
-          <Wrapper>
-            <StandardBoldFont>Genres</StandardBoldFont>
-            <FlatList
-              data={artistData.genres}
-              renderItem={({ item }) => <GenreLink>{item}</GenreLink>}
-              ItemSeparatorComponent={itemSeparatorComponent}
-              horizontal
-              showsHorizontalScrollIndicator={false}
-            />
-          </Wrapper>
-        </>
-      ) : (
-        <ActivityIndicator />
-      )}
-      {topTracks
-        ? topTracks.map(track => <TrackDisplay key={track.id} track={track} />)
-        : null}
-    </Screen>
+      <Screen noSideMargin noVerticalMargin>
+        {artistData ? (
+          <>
+            <View>
+              <BandName>{artistData.name}</BandName>
+              <Image url={artistData.images[0].url} />
+            </View>
+            <Wrapper>
+              <StandardBoldFont>Genres</StandardBoldFont>
+              <FlatList
+                data={artistData.genres}
+                keyExtractor={item => item}
+                renderItem={({ item }) => (
+                  <TouchableOpacity onPress={() => {}}>
+                    <GenreLink>{item}</GenreLink>
+                  </TouchableOpacity>
+                )}
+                ItemSeparatorComponent={itemSeparatorComponent}
+                horizontal
+                showsHorizontalScrollIndicator={false}
+              />
+            </Wrapper>
+          </>
+        ) : (
+          <ActivityIndicator />
+        )}
+        {topTracks
+          ? topTracks.map(track => (
+              <TrackDisplay key={track.id} track={track} />
+            ))
+          : null}
+      </Screen>
+    </>
   );
 }

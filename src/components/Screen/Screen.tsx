@@ -1,10 +1,12 @@
-import React, { PropsWithChildren } from 'react';
+import React, { PropsWithChildren, useState } from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { Wrapper } from './styles';
+import { ScrollableWrapper } from './styles';
+import { Dimensions } from 'react-native';
 
 interface ScreenProps {
   noSideMargin?: boolean;
   noVerticalMargin?: boolean;
+  scrollable?: boolean;
 }
 
 export default function Screen({
@@ -12,11 +14,21 @@ export default function Screen({
   noSideMargin = false,
   noVerticalMargin = false,
 }: PropsWithChildren<ScreenProps>) {
+  const { height: wHeight } = Dimensions.get('window');
+  const [screenHeight, setScreenHeight] = useState(0);
+
+  function onContentSizeChange(_: number, contentHeight: number) {
+    setScreenHeight(contentHeight);
+  }
   return (
     <SafeAreaView edges={['top']}>
-      <Wrapper noSideMargin={noSideMargin} noVerticalMargin={noVerticalMargin}>
+      <ScrollableWrapper
+        noSideMargin={noSideMargin}
+        onContentSizeChange={onContentSizeChange}
+        noVerticalMargin={noVerticalMargin}
+        scrollEnabled={screenHeight > wHeight}>
         {children}
-      </Wrapper>
+      </ScrollableWrapper>
     </SafeAreaView>
   );
 }

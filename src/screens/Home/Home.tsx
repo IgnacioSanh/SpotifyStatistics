@@ -5,29 +5,35 @@ import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faSpotify } from '@fortawesome/free-brands-svg-icons/faSpotify';
 import { faUser } from '@fortawesome/free-regular-svg-icons/faUser';
 import { faRightFromBracket } from '@fortawesome/free-solid-svg-icons/faRightFromBracket';
-
 import { faClockRotateLeft } from '@fortawesome/free-solid-svg-icons/faClockRotateLeft';
+import { CompositeScreenProps } from '@react-navigation/native';
+import { BottomTabScreenProps } from '@react-navigation/bottom-tabs';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
 
-import { Screen, Pill, ArtistsList } from '~components';
+import { Screen, Pill, ArtistsList, TrackDisplay } from '~components';
 import { Colors } from '~theme/colors';
 import { H1, StandardBoldFont } from '~theme/typography';
-import { Categories, Row, RowBottom } from './styles';
 import { useAuthContext } from '~store/AuthProvider';
-import { useTopArtists } from '~hooks';
-import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import { HomeNavigatorParamList, ScreenNames } from '~types';
-
-type HomeProps = NativeStackScreenProps<
+import { useTopArtists, useTopTracks } from '~hooks';
+import {
   HomeNavigatorParamList,
-  ScreenNames.HOME
+  MainNavigatorParamList,
+  ScreenNames,
+} from '~types';
+import { Categories, Row, RowBottom, RowSpacing } from './styles';
+
+type HomeProps = CompositeScreenProps<
+  BottomTabScreenProps<HomeNavigatorParamList, ScreenNames.HOME>,
+  NativeStackScreenProps<MainNavigatorParamList>
 >;
 
 export default function Home({ navigation }: HomeProps) {
   const [topArtists] = useTopArtists(5);
+  const [topTracks] = useTopTracks(5);
   const { logout } = useAuthContext();
 
   return (
-    <Screen>
+    <Screen scrollable>
       <Row>
         <Row>
           <FontAwesomeIcon icon={faSpotify} color={Colors.Green} size={24} />
@@ -69,7 +75,13 @@ export default function Home({ navigation }: HomeProps) {
           }
           showRanking
         />
-        <H1>Your top Albums</H1>
+        <RowSpacing>
+          <H1>Your top 5 songs</H1>
+          <StandardBoldFont color={Colors.Green}>See More</StandardBoldFont>
+        </RowSpacing>
+        {topTracks.map(track => (
+          <TrackDisplay key={track.id} track={track} />
+        ))}
       </View>
     </Screen>
   );

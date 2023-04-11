@@ -1,6 +1,8 @@
+import { NavigatorScreenParams } from '@react-navigation/native';
+
 export enum ScreenNames {
   HOME = 'HOME',
-  DISCOVER = 'DISCOVER',
+  SEARCH = 'SEARCH',
   STATS = 'STATS',
   LOGIN = 'LOGIN',
   ARTIST_DETAIL = 'ARTIST_DETAIL',
@@ -15,4 +17,10 @@ export enum NavigatorNames {
 export type HomeNavigatorParamList = {
   [ScreenNames.HOME]: undefined;
   [ScreenNames.ARTIST_DETAIL]: { id: string; artistName: string };
+};
+
+export type MainNavigatorParamList = {
+  [NavigatorNames.HOME_NAVIGATOR]: NavigatorScreenParams<HomeNavigatorParamList>;
+  [ScreenNames.SEARCH]: { query?: string };
+  [ScreenNames.STATS]: undefined;
 };

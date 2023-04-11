@@ -7,7 +7,7 @@ import { Spacings } from '~theme/spacings';
 
 export const Separator = styled.View`
   height: ${Spacings.medium}px;
-  width: ${Spacings.medium}px;
+  width: ${Spacings.medium * 2}px;
 `;
 
 interface ArtistListProps extends FlatListProps<Artist> {
@@ -17,7 +17,6 @@ interface ArtistListProps extends FlatListProps<Artist> {
 export const ArtistList = styled(FlatList as new () => FlatList<Artist>).attrs(
   ({ showRanking }: ArtistListProps) => ({
     contentContainerStyle: {
-      maxHeight: 130,
       paddingLeft: showRanking ? 30 : 0,
     },
   }),

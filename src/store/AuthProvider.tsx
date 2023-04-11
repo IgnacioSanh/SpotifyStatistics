@@ -67,7 +67,6 @@ export default function AuthProvider({ children }: PropsWithChildren) {
   async function onResponseInterceptorRejected(
     error: AxiosError,
   ): Promise<AxiosError> {
-    console.log(error);
     await errorStatusActions[error.response?.status || 0]();
     return Promise.reject(error);
   }
@@ -91,8 +90,13 @@ export default function AuthProvider({ children }: PropsWithChildren) {
   }
 
   useEffect(() => {
-    axios.interceptors.response.clear();
     createResponseInterceptor();
+    if (persistedToken.token !== '') {
+      createRequestInterceptor();
+      if (!userIsLogged) {
+        setUserIsLogged(true);
+      }
+    }
 
     return () => {
       clearInterceptors();

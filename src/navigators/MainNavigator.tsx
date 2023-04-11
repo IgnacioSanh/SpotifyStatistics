@@ -3,13 +3,13 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { ParamListBase, RouteProp } from '@react-navigation/native';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 
-import { NavigatorNames, ScreenNames } from '~types';
-import { DiscoverScreen, StatsScreen } from '~screens';
+import { MainNavigatorParamList, NavigatorNames, ScreenNames } from '~types';
+import { SearchScreen, StatsScreen } from '~screens';
 import { getRouteIcon } from '~utils/NavigationUtil';
 import { Colors } from '~theme/colors';
 import HomeNavigator from './HomeNavigator';
 
-const Tab = createBottomTabNavigator();
+const Tab = createBottomTabNavigator<MainNavigatorParamList>();
 
 interface ScreenOptionsProps {
   route: RouteProp<ParamListBase, string>;
@@ -44,9 +44,9 @@ export default function MainNavigator() {
         options={{ title: 'Home' }}
       />
       <Tab.Screen
-        name={ScreenNames.DISCOVER}
-        component={DiscoverScreen}
-        options={{ title: 'Discover' }}
+        name={ScreenNames.SEARCH}
+        component={SearchScreen}
+        options={{ title: 'Search' }}
       />
       <Tab.Screen
         name={ScreenNames.STATS}

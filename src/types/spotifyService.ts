@@ -34,8 +34,11 @@ export interface Track {
 export interface GetTopArtistsResponse {
   items: Artist[];
 }
+export interface GetTopTracksResponse {
+  items: Track[];
+}
 
-export interface GetTopArtistsRequest {
+export interface LimitParamRequest {
   limit: number;
 }
 

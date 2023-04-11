@@ -2,7 +2,7 @@ import styled from 'styled-components/native';
 
 import { Spacings } from '~theme/spacings';
 
-export const Wrapper = styled.View<{
+export const ScrollableWrapper = styled.ScrollView<{
   noSideMargin: boolean;
   noVerticalMargin: boolean;
 }>`

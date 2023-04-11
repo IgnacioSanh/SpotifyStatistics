@@ -1,6 +1,7 @@
 import React from 'react';
 import { NameContainer, Wrapper, RoundedImage, NumberOutline } from './styles';
 import { SmallFont } from '~theme/typography';
+import { moderateScale } from '~utils/scaling';
 
 interface ArtistCardProps {
   imageURI: string;
@@ -16,9 +17,15 @@ export default function ArtistCard({
   onPress,
 }: ArtistCardProps) {
   return (
-    <Wrapper withRank={Boolean(rank)} onPress={onPress}>
+    <Wrapper onPress={onPress}>
       {rank && <NumberOutline>{rank}</NumberOutline>}
-      <RoundedImage source={{ uri: imageURI, width: 110, height: 110 }} />
+      <RoundedImage
+        source={{
+          uri: imageURI,
+          width: moderateScale(120),
+          height: moderateScale(120),
+        }}
+      />
       <NameContainer>
         <SmallFont>{name}</SmallFont>
       </NameContainer>

@@ -3,8 +3,9 @@ import { SPOTIFY_API_BASE_URL } from '@env';
 import {
   Artist,
   GetArtistTopTracksResponse,
-  GetTopArtistsRequest,
+  LimitParamRequest,
   GetTopArtistsResponse,
+  GetTopTracksResponse,
   Track,
 } from '~types';
 
@@ -20,7 +21,7 @@ async function getTopArtists(limit: number) {
     const { data } = await axios.get<
       GetTopArtistsResponse,
       AxiosResponse<GetTopArtistsResponse>,
-      GetTopArtistsRequest
+      LimitParamRequest
     >(url, {
       params: { limit },
     });
@@ -31,6 +32,20 @@ async function getTopArtists(limit: number) {
     } else {
       console.log('UNKOWN ERROR', error);
     }
+  }
+}
+
+async function getUserTopTracks(limit: number) {
+  const url = `${SPOTIFY_API_BASE_URL}/me/top/tracks`;
+  try {
+    const { data } = await axios.get<
+      GetTopTracksResponse,
+      AxiosResponse<GetTopTracksResponse>,
+      LimitParamRequest
+    >(url, { params: { limit } });
+    return data.items;
+  } catch (error) {
+    console.log(error);
   }
 }
 
@@ -59,4 +74,5 @@ export default {
   getTopArtists,
   getArtist,
   artistTopTracks,
+  getUserTopTracks,
 };

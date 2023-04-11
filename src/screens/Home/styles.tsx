@@ -19,3 +19,12 @@ export const Categories = styled.View`
 export const RowBottom = styled(Row)`
   align-items: flex-end;
 `;
+
+export const RowSpacing = styled.View`
+  flex-direction: row;
+  gap: ${Spacings.small}px;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: ${Spacings.large}px;
+  margin-bottom: ${Spacings.medium}px;
+`;

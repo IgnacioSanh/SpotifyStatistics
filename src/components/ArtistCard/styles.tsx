@@ -1,20 +1,25 @@
 import styled from 'styled-components/native';
-import { BorderRadius } from '~theme/spacings';
+import { BorderRadius, Spacings } from '~theme/spacings';
 import { Colors } from '~theme/colors';
 
-export const Wrapper = styled.TouchableOpacity<{ withRank: boolean }>`
-  width: ${({ withRank }) => (withRank ? 150 : 110)}px;
-  height: 150px;
+export const Wrapper = styled.TouchableOpacity`
+  flex: 1;
+  flex-direction: column;
 `;
 
 export const NameContainer = styled.View`
-  justify-content: center;
-  align-items: flex-start;
+  justify-content: flex-start;
+  align-items: center;
   flex-direction: row;
+  background-color: ${Colors.Black_soft};
+  padding: ${Spacings.extraSmall / 2}px;
+  border-bottom-left-radius: ${BorderRadius.bordered}px;
+  border-bottom-right-radius: ${BorderRadius.bordered}px;
 `;
 
 export const RoundedImage = styled.Image`
-  border-radius: ${BorderRadius.bordered}px;
+  border-top-left-radius: ${BorderRadius.bordered}px;
+  border-top-right-radius: ${BorderRadius.bordered}px;
 `;
 
 export const NumberOutline = styled.Text`

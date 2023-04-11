@@ -24,9 +24,8 @@ export const StandardBoldFont = styled(StandardFont)`
   font-weight: 600;
 `;
 
-export const SmallFont = styled(StandardFont)<{ color?: Colors }>`
+export const SmallFont = styled(StandardFont)`
   color: ${({ color }) => color || Colors.White};
   font-size: ${SmallFontSize}px;
   font-weight: 400;
-  overflow-wrap: break-word;
 `;
